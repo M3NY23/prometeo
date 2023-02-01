@@ -11,10 +11,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        title: 'Prometeo',
-        theme: AppTheme.darkTheme,
-        initialRoute: AppRouter.initialRoute,
-        routes: AppRouter.routes);
+    return MaterialApp.router(
+      title: 'Prometeo',
+      theme: AppTheme.darkTheme,
+      routerConfig: AppRouter.router,
+    );
   }
 }
