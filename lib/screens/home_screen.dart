@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:prometeo/screens/widgets/home_screen_menu_bar.dart';
+import 'package:prometeo/widgets/expandable_side_bar.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String route = "/";
@@ -8,24 +9,112 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          title: const Text("Prometeo"),
-        ),
         body: Column(
-          children: [
-            const HomeScreenMenuBar(),
+      children: [
+        const HomeScreenMenuBar(),
+        Expanded(
+          child: Row(children: [
+            ExpandableSideBar(
+              expand: true,
+              items: [
+                SideBarTile(
+                  icon: const Icon(Icons.picture_in_picture_alt_outlined),
+                  label: "Scenes",
+                  onTap: () {},
+                ),
+                SideBarTile(
+                  icon: const Icon(Icons.card_travel_outlined),
+                  label: "Components",
+                  onTap: () {},
+                ),
+                SideBarTile(
+                  icon: const Icon(Icons.audio_file),
+                  label: "Sounds",
+                  onTap: () {},
+                ),
+                SideBarTile(
+                  icon: const Icon(Icons.code),
+                  label: "Scripts",
+                  onTap: () {},
+                ),
+                SideBarTile(
+                  icon: const Icon(Icons.photo_library_outlined),
+                  label: "Assets",
+                  onTap: () {},
+                ),
+              ],
+            ),
             Expanded(
+              flex: 6,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    'Welcome to PROMETEO',
+                children: [
+                  const Expanded(
+                    flex: 4,
+                    child: Center(
+                      child: Text("Welcome to prometeo"),
+                    ),
                   ),
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.white)),
+                      child: Row(
+                        children: [
+                          for (int i = 0; i < 10; i++)
+                            TextButton(
+                              child: Text("Control $i"),
+                              onPressed: () {},
+                            ),
+                        ],
+                      ),
+                    ),
+                  )
                 ],
               ),
             ),
-          ],
-        ));
+            Expanded(
+              child: Container(
+                decoration:
+                    BoxDecoration(border: Border.all(color: Colors.white)),
+                child: Column(children: const [
+                  ExpansionTile(
+                    title: Text("Propiedades"),
+                    children: [
+                      Text("Propiedad 1"),
+                      Text("Propiedad 3"),
+                      Text("Propiedad 3"),
+                    ],
+                  ),
+                  ExpansionTile(
+                    title: Text("Componentes"),
+                    children: [
+                      Text("Componente 1"),
+                      Text("Componente 3"),
+                      Text("Componente 3"),
+                    ],
+                  ),
+                  ExpansionTile(
+                    title: Text("Variables"),
+                    children: [
+                      Text("Variable 1"),
+                      Text("Variable 3"),
+                      Text("Variable 3"),
+                    ],
+                  ),
+                  ExpansionTile(
+                    title: Text("Eventos"),
+                    children: [
+                      Text("Evento 1"),
+                      Text("Evento 3"),
+                      Text("Evento 3"),
+                    ],
+                  ),
+                ]),
+              ),
+            )
+          ]),
+        ),
+      ],
+    ));
   }
 }
