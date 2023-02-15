@@ -40,6 +40,8 @@ dependencies:
   equatable: ^2.0.5
   sidebarx: ^0.14.0
   flutter_code_editor: ^0.2.10
+  flutter_highlight: ^0.7.0
+  highlight: ^0.7.0
 
 dev_dependencies:
   flutter_test:

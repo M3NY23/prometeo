@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:prometeo/screens/widgets/home_screen_menu_bar.dart';
+import 'package:go_router/go_router.dart';
+import 'package:prometeo/screens/code_editor/code_editor_screen.dart';
+import 'package:prometeo/screens/home/widgets/home_screen_menu_bar.dart';
 import 'package:prometeo/widgets/expandable_side_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -35,7 +37,7 @@ class HomeScreen extends StatelessWidget {
                 SideBarTile(
                   icon: const Icon(Icons.code),
                   label: "Scripts",
-                  onTap: () {},
+                  onTap: () => context.go(CodeEditorScreen.route),
                 ),
                 SideBarTile(
                   icon: const Icon(Icons.photo_library_outlined),
