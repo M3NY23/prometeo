@@ -10,6 +10,17 @@ class AppTheme {
 
   static final ThemeData darkTheme = ThemeData.dark().copyWith(
       useMaterial3: true,
+      menuBarTheme: MenuBarThemeData(
+          style: MenuStyle(
+              elevation: MaterialStateProperty.resolveWith((states) => 0),
+              surfaceTintColor:
+                  MaterialStateColor.resolveWith((states) => backgroundColor),
+              backgroundColor:
+                  MaterialStateColor.resolveWith((states) => backgroundColor))),
+      menuButtonTheme: MenuButtonThemeData(
+          style: MenuItemButton.styleFrom(
+        backgroundColor: backgroundColor,
+      )),
       iconTheme: const IconThemeData(color: Colors.white),
       elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
