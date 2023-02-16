@@ -3,15 +3,21 @@ import 'package:go_router/go_router.dart';
 import 'package:prometeo/gui/screens/assets/assets_screen.dart';
 import 'package:prometeo/gui/screens/code_editor/code_editor_screen.dart';
 import 'package:prometeo/gui/screens/componentes/components_screen.dart';
+import 'package:prometeo/gui/screens/project/project_screen.dart';
 import 'package:prometeo/gui/screens/scenes/scenes_screen.dart';
 import 'package:prometeo/gui/screens/sounds/sounds_screen.dart';
 
 class AppRouter {
-  static const initialRoute = ScenesScreen.route;
+  static const initialRoute = ProjectScreen.route;
 
   static final router = GoRouter(initialLocation: initialRoute, routes: [
     GoRoute(
-      path: initialRoute,
+      path: ProjectScreen.route,
+      pageBuilder: (context, state) =>
+          customTransition(const ProjectScreen(), state),
+    ),
+    GoRoute(
+      path: ScenesScreen.route,
       pageBuilder: (context, state) =>
           customTransition(const ScenesScreen(), state),
     ),
