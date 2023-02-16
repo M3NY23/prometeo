@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:prometeo/themes/app_theme.dart';
 
 class ExpandableSideBar extends StatefulWidget {
-  final List<SideBarTile>? items;
+  final List<SideBarItem> items;
   final Duration? duration;
   final double expandedWidht;
   final double collapsedWidht;
   final bool expand;
   final double elevation;
+  final int? selected;
   const ExpandableSideBar(
-      {this.items,
+      {this.items = const [],
       super.key,
       this.duration,
       this.expandedWidht = 200,
       this.collapsedWidht = 60,
       this.elevation = 1,
-      this.expand = false});
+      this.expand = false,
+      this.selected});
 
   @override
   State<ExpandableSideBar> createState() => _ExpandableSideBarState();
 }
 
 class _ExpandableSideBarState extends State<ExpandableSideBar> {
+  late int _selectedIndex = widget.selected ?? 0;
   late bool _isExpanded = widget.expand;
   late double _width =
       _isExpanded ? widget.expandedWidht : widget.collapsedWidht;
@@ -41,13 +45,25 @@ class _ExpandableSideBarState extends State<ExpandableSideBar> {
     return ClipRRect(
       clipBehavior: Clip.none,
       child: AnimatedContainer(
-        decoration: const BoxDecoration(
-            border: Border(right: BorderSide(color: Colors.white))),
-        duration: widget.duration ?? const Duration(milliseconds: 500),
+        decoration: BoxDecoration(border: Border.all(color: Colors.white)),
+        duration: widget.duration ?? const Duration(milliseconds: 200),
         width: _width,
         child: Column(
           children: [
-            if (widget.items != null) ...widget.items!,
+            for (int i = 0; i < widget.items.length; i++)
+              SideBarTile(
+                label: widget.items[i].label,
+                icon: widget.items[i].icon,
+                isSelected: i == _selectedIndex,
+                onTap: () {
+                  setState(() {
+                    _selectedIndex = i;
+                  });
+                  if (widget.items[i].onTap != null) {
+                    widget.items[i].onTap!();
+                  }
+                },
+              ),
             const Expanded(
               child: SizedBox(),
             ),
@@ -77,12 +93,28 @@ class _ExpandableSideBarState extends State<ExpandableSideBar> {
   }
 }
 
+class SideBarItem {
+  final String label;
+  final Icon icon;
+  final Function()? onTap;
+  SideBarItem({
+    required this.label,
+    required this.icon,
+    this.onTap,
+  });
+}
+
 class SideBarTile extends StatelessWidget {
   final String label;
   final Icon icon;
   final Function()? onTap;
+  final bool isSelected;
   const SideBarTile(
-      {super.key, required this.label, required this.icon, this.onTap});
+      {super.key,
+      required this.label,
+      required this.icon,
+      this.onTap,
+      this.isSelected = false});
 
   @override
   Widget build(BuildContext context) {
@@ -90,13 +122,17 @@ class SideBarTile extends StatelessWidget {
       constraints: const BoxConstraints(maxHeight: 60),
       child: Tooltip(
         message: label,
-        child: ListTile(
-          leading: icon,
-          onTap: onTap,
-          title: Text(
-            label,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+        child: Theme(
+          data:
+              isSelected ? AppTheme.selectedListTileTheme : AppTheme.darkTheme,
+          child: ListTile(
+            leading: icon,
+            onTap: onTap,
+            title: Text(
+              label,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
           ),
         ),
       ),

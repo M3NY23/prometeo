@@ -1,21 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:prometeo/screens/assets/assets_screen.dart';
 import 'package:prometeo/screens/code_editor/code_editor_screen.dart';
-import 'package:prometeo/screens/home/home_screen.dart';
+import 'package:prometeo/screens/componentes/components_screen.dart';
+import 'package:prometeo/screens/scenes/scenes_screen.dart';
+import 'package:prometeo/screens/sounds/sounds_screen.dart';
 
 class AppRouter {
-  static const initialRoute = HomeScreen.route;
+  static const initialRoute = ScenesScreen.route;
 
   static final router = GoRouter(initialLocation: initialRoute, routes: [
     GoRoute(
       path: initialRoute,
       pageBuilder: (context, state) =>
-          customTransition(const HomeScreen(), state),
+          customTransition(const ScenesScreen(), state),
     ),
     GoRoute(
       path: CodeEditorScreen.route,
       pageBuilder: (context, state) =>
-          customTransition(CodeEditorScreen(), state),
+          customTransition(const CodeEditorScreen(), state),
+    ),
+    GoRoute(
+      path: ComponentsScreen.route,
+      pageBuilder: (context, state) =>
+          customTransition(const ComponentsScreen(), state),
+    ),
+    GoRoute(
+      path: SoundsScreen.route,
+      pageBuilder: (context, state) =>
+          customTransition(const SoundsScreen(), state),
+    ),
+    GoRoute(
+      path: AssetsScreen.route,
+      pageBuilder: (context, state) =>
+          customTransition(const AssetsScreen(), state),
     ),
   ]);
 
