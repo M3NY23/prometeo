@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:prometeo/themes/app_theme.dart';
 
 class EditorContentBar extends StatelessWidget {
   const EditorContentBar({super.key});
@@ -8,40 +9,44 @@ class EditorContentBar extends StatelessWidget {
     return Expanded(
       child: Container(
         decoration: BoxDecoration(border: Border.all(color: Colors.white)),
-        child: Column(children: const [
-          ExpansionTile(
-            title: Text("Propiedades"),
-            children: [
-              Text("Propiedad 1"),
-              Text("Propiedad 3"),
-              Text("Propiedad 3"),
-            ],
-          ),
-          ExpansionTile(
-            title: Text("Componentes"),
-            children: [
-              Text("Componente 1"),
-              Text("Componente 3"),
-              Text("Componente 3"),
-            ],
-          ),
-          ExpansionTile(
-            title: Text("Variables"),
-            children: [
-              Text("Variable 1"),
-              Text("Variable 3"),
-              Text("Variable 3"),
-            ],
-          ),
-          ExpansionTile(
-            title: Text("Eventos"),
-            children: [
-              Text("Evento 1"),
-              Text("Evento 3"),
-              Text("Evento 3"),
-            ],
-          ),
-        ]),
+        child: Theme(
+          data: AppTheme.darkTheme
+              .copyWith(colorScheme: const ColorScheme.dark()),
+          child: Column(children: const [
+            ExpansionTile(
+              title: Text("Propiedades"),
+              children: [
+                Text("Propiedad 1"),
+                Text("Propiedad 3"),
+                Text("Propiedad 3"),
+              ],
+            ),
+            ExpansionTile(
+              title: Text("Componentes"),
+              children: [
+                Text("Componente 1"),
+                Text("Componente 3"),
+                Text("Componente 3"),
+              ],
+            ),
+            ExpansionTile(
+              title: Text("Variables"),
+              children: [
+                Text("Variable 1"),
+                Text("Variable 3"),
+                Text("Variable 3"),
+              ],
+            ),
+            ExpansionTile(
+              title: Text("Eventos"),
+              children: [
+                Text("Evento 1"),
+                Text("Evento 3"),
+                Text("Evento 3"),
+              ],
+            ),
+          ]),
+        ),
       ),
     );
   }
