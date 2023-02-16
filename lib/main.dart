@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:prometeo/routes/app_router.dart';
-import 'package:prometeo/themes/app_theme.dart';
+import 'package:prometeo/gui/routes/app_router.dart';
+import 'package:prometeo/gui/themes/app_theme.dart';
 import 'package:window_manager/window_manager.dart';
 
 void main() async {

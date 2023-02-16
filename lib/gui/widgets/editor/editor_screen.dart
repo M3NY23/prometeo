@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prometeo/themes/app_theme.dart';
+import 'package:prometeo/gui/themes/app_theme.dart';
 import 'editor_center_body.dart';
 import 'editor_content_bar.dart';
 

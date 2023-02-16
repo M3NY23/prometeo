@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:prometeo/screens/assets/assets_screen.dart';
-import 'package:prometeo/screens/code_editor/code_editor_screen.dart';
-import 'package:prometeo/screens/componentes/components_screen.dart';
-import 'package:prometeo/screens/scenes/scenes_screen.dart';
-import 'package:prometeo/screens/sounds/sounds_screen.dart';
+import 'package:prometeo/gui/screens/assets/assets_screen.dart';
+import 'package:prometeo/gui/screens/code_editor/code_editor_screen.dart';
+import 'package:prometeo/gui/screens/componentes/components_screen.dart';
+import 'package:prometeo/gui/screens/scenes/scenes_screen.dart';
+import 'package:prometeo/gui/screens/sounds/sounds_screen.dart';
 
 class AppRouter {
   static const initialRoute = ScenesScreen.route;

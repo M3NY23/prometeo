@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:prometeo/themes/app_theme.dart';
+import 'package:prometeo/gui/themes/app_theme.dart';
 
 class EditorContentBar extends StatelessWidget {
   const EditorContentBar({super.key});

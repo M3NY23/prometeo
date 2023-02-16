@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:highlight/languages/dart.dart';
-import 'package:prometeo/screens/code_editor/widgets/code_editor_widget.dart';
-import 'package:prometeo/shared/code_placehorlders.dart';
-import 'package:prometeo/widgets/editor/editor_center_body.dart';
-import 'package:prometeo/widgets/editor/editor_content_bar.dart';
-import 'package:prometeo/widgets/editor/editor_controls_bottom_bar.dart';
-import 'package:prometeo/widgets/editor/editor_screen.dart';
-import 'package:prometeo/widgets/editor/editor_screen_side_bar.dart';
+import 'package:prometeo/gui/screens/code_editor/widgets/code_editor_widget.dart';
+import 'package:prometeo/data/shared/code_placehorlders.dart';
+import 'package:prometeo/gui/widgets/editor/editor_center_body.dart';
+import 'package:prometeo/gui/widgets/editor/editor_content_bar.dart';
+import 'package:prometeo/gui/widgets/editor/editor_controls_bottom_bar.dart';
+import 'package:prometeo/gui/widgets/editor/editor_screen.dart';
+import 'package:prometeo/gui/widgets/editor/editor_screen_side_bar.dart';
 
 class CodeEditorScreen extends StatelessWidget {
   static const String route = "/code";
