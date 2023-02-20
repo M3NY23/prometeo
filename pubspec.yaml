@@ -43,6 +43,7 @@ dependencies:
   flutter_highlight: ^0.7.0
   highlight: ^0.7.0
   window_manager: ^0.3.0
+  hive: ^2.2.3
 
 dev_dependencies:
   flutter_test:
