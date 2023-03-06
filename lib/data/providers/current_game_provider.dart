@@ -7,7 +7,7 @@ class CurrentGameProvider {
   static Future<bool?> init() async {
     if (_box == null) {
       try {
-        await Hive.openBox(boxName);
+        _box = await Hive.openBox(boxName);
         debugPrint("CurrentGameProvider box initialized");
       } catch (ex) {
         return false;

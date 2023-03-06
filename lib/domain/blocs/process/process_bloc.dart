@@ -32,13 +32,14 @@ class ProcessBloc extends Bloc<ProcessEvent, ProcessState> {
       final success = await CurrentGameProvider.init() ?? false;
       if (success) {
         emit.call(const ProcessState(
-          status: Status.success,
-          label: "",
-        ));
+            status: Status.success,
+            label: "Project started",
+            iconKey: IconKeys.success));
       } else {
         throw Exception();
       }
     } catch (ex) {
+      debugPrint("$ex");
       emit.call(const ProcessState(
           status: Status.failure,
           label: "Initialization failed",
