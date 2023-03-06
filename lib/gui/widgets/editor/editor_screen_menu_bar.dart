@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prometeo/domain/blocs/process/process_bloc.dart';
+import 'package:prometeo/gui/screens/project/project_screen_controller.dart';
 import 'package:prometeo/gui/widgets/editor/editor_menu_bar.dart';
 
 class EditorScreenMenuBar extends StatelessWidget {
@@ -14,6 +15,14 @@ class EditorScreenMenuBar extends StatelessWidget {
         MenuBarData(
           label: "File",
           items: [
+            MenuBarData(
+                label: "New",
+                callback: () async {
+                  debugPrint("New");
+                  await ProjectScreenController().newProject(context);
+                },
+                shortcut: const SingleActivator(LogicalKeyboardKey.keyN,
+                    control: true)),
             MenuBarData(
                 label: "Save",
                 callback: () {

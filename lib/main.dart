@@ -17,7 +17,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => ProcessBloc())],
+        providers: [
+          BlocProvider(
+              lazy: false,
+              create: (context) => ProcessBloc()..add(InitialEvent()))
+        ],
         child: MaterialApp.router(
           title: 'Prometeo',
           debugShowCheckedModeBanner: false,

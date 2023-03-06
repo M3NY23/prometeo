@@ -1,7 +1,5 @@
 part of 'process_bloc.dart';
 
-enum Status { initial, saving, success, failure, building, loading }
-
 class ProcessState extends Equatable {
   final Status status;
   final String label;

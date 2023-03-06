@@ -10,3 +10,5 @@ class FileSavePressed extends ProcessEvent {}
 class BuildProjectPressed extends ProcessEvent {}
 
 class RunProjectPressed extends ProcessEvent {}
+
+class InitialEvent extends ProcessEvent {}

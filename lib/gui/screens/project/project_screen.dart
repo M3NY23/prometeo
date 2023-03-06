@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:prometeo/data/shared/assets.dart';
+import 'package:prometeo/gui/screens/project/project_screen_controller.dart';
 import 'package:prometeo/gui/screens/scenes/scenes_screen.dart';
 import 'package:prometeo/gui/themes/app_theme.dart';
+import 'package:prometeo/gui/util/function_dialogs.dart';
 import 'package:window_manager/window_manager.dart';
 
 class ProjectScreen extends StatefulWidget {
@@ -14,6 +16,8 @@ class ProjectScreen extends StatefulWidget {
 }
 
 class _ProjectScreenState extends State<ProjectScreen> with WindowListener {
+  final controller = ProjectScreenController();
+
   @override
   void initState() {
     windowManager.addListener(this);
@@ -40,7 +44,7 @@ class _ProjectScreenState extends State<ProjectScreen> with WindowListener {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
-                      onPressed: () => context.go(ScenesScreen.route),
+                      onPressed: () => controller.newProject(context),
                       child: ConstrainedBox(
                           constraints: const BoxConstraints(minWidth: 200),
                           child: const Text(

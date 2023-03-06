@@ -4,6 +4,9 @@ import 'dart:math';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prometeo/data/providers/current_game_provider.dart';
+import 'package:prometeo/data/providers/local_database.dart';
+import 'package:prometeo/data/shared/status.dart';
 import 'package:prometeo/gui/util/icon_kyes.dart';
 
 part 'process_event.dart';
@@ -11,10 +14,38 @@ part 'process_state.dart';
 
 class ProcessBloc extends Bloc<ProcessEvent, ProcessState> {
   ProcessBloc() : super(const ProcessState(status: Status.initial, label: "")) {
+    on<InitialEvent>(_onInitial);
     on<FileSavePressed>(_onFileSavePressed);
     on<BuildProjectPressed>(_onBuildProjectPressed);
     on<RunProjectPressed>(_onRunProjectPressed);
   }
+
+  _onInitial(InitialEvent event, Emitter emit) async {
+    try {
+      debugPrint("initial event");
+      emit.call(const ProcessState(
+          status: Status.loading,
+          label: "creating project",
+          iconKey: IconKeys.building,
+          useProgressIndicator: true));
+      await LocalDatabase.init();
+      final success = await CurrentGameProvider.init() ?? false;
+      if (success) {
+        emit.call(const ProcessState(
+          status: Status.success,
+          label: "",
+        ));
+      } else {
+        throw Exception();
+      }
+    } catch (ex) {
+      emit.call(const ProcessState(
+          status: Status.failure,
+          label: "Initialization failed",
+          iconKey: IconKeys.failure));
+    }
+  }
+
   _onBuildProjectPressed(BuildProjectPressed event, Emitter emit) async {
     try {
       emit.call(const ProcessState(
