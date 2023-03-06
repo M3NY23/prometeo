@@ -4,15 +4,21 @@ import 'dart:math';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prometeo/data/providers/app_settings_provider.dart';
 import 'package:prometeo/data/providers/current_game_provider.dart';
 import 'package:prometeo/data/providers/local_database.dart';
+import 'package:prometeo/data/repositories/game_repository.dart';
+import 'package:prometeo/data/repositories/settings_repository.dart';
 import 'package:prometeo/data/shared/status.dart';
+import 'package:prometeo/domain/runner/game_runner.dart';
 import 'package:prometeo/gui/util/icon_kyes.dart';
 
 part 'process_event.dart';
 part 'process_state.dart';
 
 class ProcessBloc extends Bloc<ProcessEvent, ProcessState> {
+  GameRepository gameRepository = GameRepository();
+  SettingsRepository settingsRepository = SettingsRepository();
   ProcessBloc() : super(const ProcessState(status: Status.initial, label: "")) {
     on<InitialEvent>(_onInitial);
     on<FileSavePressed>(_onFileSavePressed);
@@ -29,7 +35,8 @@ class ProcessBloc extends Bloc<ProcessEvent, ProcessState> {
           iconKey: IconKeys.building,
           useProgressIndicator: true));
       await LocalDatabase.init();
-      final success = await CurrentGameProvider.init() ?? false;
+      bool success = await CurrentGameProvider.init() ?? false;
+      success &= await AppSettingsProvider.init() ?? false;
       if (success) {
         emit.call(const ProcessState(
             status: Status.success,
@@ -100,13 +107,14 @@ class ProcessBloc extends Bloc<ProcessEvent, ProcessState> {
           label: "Running",
           iconKey: IconKeys.running,
           useProgressIndicator: true));
-      //TODO runProject()
-      if (Random().nextBool()) {
-        throw Exception();
-      }
+      GameRunner runner =
+          GameRunner(tempPath: settingsRepository.getTempPath());
+      await runner.createTempProject();
+      await runner.runGame();
       await Future.delayed(const Duration(milliseconds: 2500));
       emit.call(const ProcessState(status: Status.success, label: ""));
     } catch (ex) {
+      debugPrint("$ex");
       emit.call(const ProcessState(
           status: Status.failure,
           label: "Run project failed",

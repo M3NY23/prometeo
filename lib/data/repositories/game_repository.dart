@@ -3,8 +3,9 @@ import 'package:prometeo/domain/util/utils.dart';
 
 class GameRepository {
   static PrometeoGame game = const PrometeoGame();
-  static setNewGame(String name) {
+  static setNewGame(String name, String filePath) {
     String timeStamp = getTimeStamp();
-    game = PrometeoGame(name: name, timeStamp: timeStamp);
+    game =
+        PrometeoGame(name: name, timeStamp: timeStamp, projectPath: filePath);
   }
 }
