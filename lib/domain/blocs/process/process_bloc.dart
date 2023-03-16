@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +60,6 @@ class ProcessBloc extends Bloc<ProcessEvent, ProcessState> {
           label: "Building project",
           iconKey: IconKeys.building,
           useProgressIndicator: true));
-      //TODO buildProject()
       await Future.delayed(const Duration(milliseconds: 1500));
       emit.call(const ProcessState(
           status: Status.success,
@@ -83,7 +81,6 @@ class ProcessBloc extends Bloc<ProcessEvent, ProcessState> {
           status: Status.saving,
           label: "Saving File",
           useProgressIndicator: true));
-      //TODO fileSave()
       await Future.delayed(const Duration(milliseconds: 500));
       emit.call(const ProcessState(
           status: Status.success,

@@ -2,14 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:prometeo/data/repositories/game_repository.dart';
-import 'package:prometeo/data/repositories/settings_repository.dart';
 
 class GameRunner {
   String tempPath;
   GameRunner({required this.tempPath});
 
   // to avoid misspelling
-  // TODO get flutter path
   static const String flutter = "C:\\Users\\ariel\\flutter\\bin\\flutter.bat";
   static const String run = "run";
   static const String device = "-d";

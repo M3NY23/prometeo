@@ -12,7 +12,7 @@ class EditorCenterBody extends StatelessWidget {
       child: child ??
           Placeholder(
             child: Center(
-              child: Text("${GameRepository.game.name}"),
+              child: Text(GameRepository.game.name),
             ),
           ),
     );

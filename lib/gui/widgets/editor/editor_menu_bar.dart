@@ -38,7 +38,7 @@ class _EditorMenuBarState extends State<EditorMenuBar> {
         Expanded(
           child: _buildMenu(),
         ),
-        const EventsLabel(),
+        // const EventsLabel(),
       ],
     );
   }
@@ -54,6 +54,8 @@ class _EditorMenuBarState extends State<EditorMenuBar> {
   Widget _appendMenuChildren(MenuBarData data) {
     if (data.isFinal) {
       return MenuItemButton(
+        style: ButtonStyle(
+            minimumSize: MaterialStateProperty.all(const Size(200, 30))),
         shortcut: data.shortcut,
         onPressed: data.callback,
         child: Text(data.label),

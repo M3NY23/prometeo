@@ -8,6 +8,12 @@ import 'package:window_manager/window_manager.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await windowManager.ensureInitialized();
+
+  await windowManager.waitUntilReadyToShow().then((_) async {
+    await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
+    await windowManager.setTitle("I don't have a titlebar!");
+    await windowManager.show(); 
+  });
   runApp(const MyApp());
 }
 

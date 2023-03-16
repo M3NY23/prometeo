@@ -3,12 +3,13 @@ import 'package:flutter_code_editor/flutter_code_editor.dart';
 import 'package:highlight/languages/dart.dart';
 import 'package:prometeo/gui/screens/code_editor/widgets/code_editor_widget.dart';
 import 'package:prometeo/data/shared/code_placehorlders.dart';
+import 'package:prometeo/gui/widgets/editor/editor_bottom_bar.dart';
 import 'package:prometeo/gui/widgets/editor/editor_center_body.dart';
 import 'package:prometeo/gui/widgets/editor/editor_content_bar.dart';
 import 'package:prometeo/gui/widgets/editor/editor_controls_bottom_bar.dart';
 import 'package:prometeo/gui/widgets/editor/editor_screen.dart';
-import 'package:prometeo/gui/widgets/editor/editor_screen_menu_bar.dart';
 import 'package:prometeo/gui/widgets/editor/editor_screen_side_bar.dart';
+import 'package:prometeo/gui/widgets/editor/editor_title_bar.dart';
 
 class CodeEditorScreen extends StatelessWidget {
   static const String route = "/code";
@@ -17,10 +18,11 @@ class CodeEditorScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return EditorScreen(
-        menuBar: const EditorScreenMenuBar(),
+        titleBar: const EditorTitleBar(),
         sideBar: const EditorScreenSideBar(selectedScreen: 3),
         contentBar: const EditorContentBar(),
         controlsBottomBar: const EditorControlsBottomBar(),
+        bottomBar: const EditorBottomBar(),
         centerBody: EditorCenterBody(
           child: CodeEditorWidget(
               controller: CodeController(

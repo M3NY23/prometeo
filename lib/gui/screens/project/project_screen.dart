@@ -4,7 +4,6 @@ import 'package:prometeo/data/shared/assets.dart';
 import 'package:prometeo/gui/screens/project/project_screen_controller.dart';
 import 'package:prometeo/gui/screens/scenes/scenes_screen.dart';
 import 'package:prometeo/gui/themes/app_theme.dart';
-import 'package:prometeo/gui/util/function_dialogs.dart';
 import 'package:window_manager/window_manager.dart';
 
 class ProjectScreen extends StatefulWidget {
@@ -23,6 +22,7 @@ class _ProjectScreenState extends State<ProjectScreen> with WindowListener {
     windowManager.addListener(this);
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await Future.delayed(const Duration(milliseconds: 400));
+      await windowManager.setPreventClose(false);
       await windowManager.maximize();
     });
     super.initState();
@@ -94,4 +94,13 @@ class _ProjectScreenState extends State<ProjectScreen> with WindowListener {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    windowManager.removeListener(this);
+    super.dispose();
+  }
+
+  @override
+  void onWindowClose() async {}
 }
