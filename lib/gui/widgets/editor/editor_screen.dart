@@ -20,12 +20,14 @@ class EditorScreen extends StatelessWidget {
       required this.sideBar,
       required this.contentBar,
       required this.controlsBottomBar,
-      required this.centerBody, required this.titleBar, required this.bottomBar});
+      required this.centerBody,
+      required this.titleBar,
+      required this.bottomBar});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomSheet: bottomBar,
+        bottomSheet: bottomBar,
         backgroundColor: AppTheme.backgroundColor,
         appBar: titleBar,
         body: Column(

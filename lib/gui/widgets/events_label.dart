@@ -11,25 +11,29 @@ class EventsLabel extends StatelessWidget {
     return ConstrainedBox(
       constraints: const BoxConstraints(minWidth: 210),
       child: BlocBuilder<ProcessBloc, ProcessState>(builder: (context, state) {
-        return Row(
-          children: [
-            if (state.useProgressIndicator)
-              const Padding(
-                padding: EdgeInsets.only(right: 5),
-                child: SizedBox(
-                    height: 12,
-                    width: 12,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                    )),
-              ),
-            if ((state.iconKey ?? "").isNotEmpty)
-              Padding(
-                padding: const EdgeInsets.only(right: 3),
-                child: IconKeys.icons[state.iconKey]!,
-              ),
-            Text(state.label)
-          ],
+        return Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              if (state.useProgressIndicator)
+                const Padding(
+                  padding: EdgeInsets.only(right: 5),
+                  child: SizedBox(
+                      height: 12,
+                      width: 12,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2,
+                      )),
+                ),
+              if ((state.iconKey ?? "").isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(right: 3),
+                  child: IconKeys.icons[state.iconKey]!,
+                ),
+              Text(state.label)
+            ],
+          ),
         );
       }),
     );

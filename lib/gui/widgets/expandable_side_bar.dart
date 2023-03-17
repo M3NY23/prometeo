@@ -14,7 +14,7 @@ class ExpandableSideBar extends StatefulWidget {
       super.key,
       this.duration,
       this.expandedWidht = 200,
-      this.collapsedWidht = 60,
+      this.collapsedWidht = 80,
       this.elevation = 1,
       this.expand = false,
       this.selected});
@@ -45,7 +45,7 @@ class _ExpandableSideBarState extends State<ExpandableSideBar> {
     return ClipRRect(
       clipBehavior: Clip.none,
       child: AnimatedContainer(
-        decoration: BoxDecoration(border: Border.all(color: Colors.white)),
+        decoration: const BoxDecoration(color: AppTheme.fifthColor),
         duration: widget.duration ?? const Duration(milliseconds: 200),
         width: _width,
         child: Column(
@@ -119,22 +119,42 @@ class SideBarTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(maxHeight: 60),
+      constraints: const BoxConstraints(maxHeight: 70),
       child: Tooltip(
         message: label,
         child: Theme(
-          data:
-              isSelected ? AppTheme.selectedListTileTheme : AppTheme.darkTheme,
-          child: ListTile(
-            leading: icon,
-            onTap: onTap,
-            title: Text(
-              label,
-              maxLines: 1,
-              overflow: TextOverflow.ellipsis,
+            data: isSelected
+                ? AppTheme.selectedListTileTheme
+                : AppTheme.darkTheme,
+            child: SizedBox(
+              child: MaterialButton(
+                  onPressed: onTap,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        icon,
+                        Text(
+                          label,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 10),
+                        ),
+                      ],
+                    ),
+                  )),
+            )
+            // child: ListTile(
+            //   leading: icon,
+            //   onTap: onTap,
+            //   title: Text(
+            //     label,
+            //     maxLines: 1,
+            //     overflow: TextOverflow.ellipsis,
+            //   ),
+            // ),
             ),
-          ),
-        ),
       ),
     );
   }

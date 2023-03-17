@@ -16,8 +16,8 @@ class EditorTitleBar extends StatelessWidget implements PreferredSize {
     return AppBar(
         titleSpacing: 0,
         leading: Padding(
-          padding: const EdgeInsets.all(5.0),
-          child: SvgPicture.asset("assets/images/prometeo.svg"),
+          padding: const EdgeInsets.all(6.0),
+          child: Center(child: SvgPicture.asset("assets/images/prometeo.svg")),
         ),
         title: EditorMenuBar(
           options: [
@@ -126,5 +126,5 @@ class EditorTitleBar extends StatelessWidget implements PreferredSize {
   Widget get child => throw UnimplementedError();
 
   @override
-  Size get preferredSize => const Size.fromHeight(30);
+  Size get preferredSize => const Size.fromHeight(35);
 }

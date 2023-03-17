@@ -8,7 +8,7 @@ class EditorBottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 30,
+      height: 35,
       color: AppTheme.fourthColor,
       width: MediaQuery.of(context).size.width,
       child: Row(
